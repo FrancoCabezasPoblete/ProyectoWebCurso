@@ -1,0 +1,55 @@
+body{
+  background: linear-gradient(to bottom, #99ffcc, #99ff66);
+  /*Ancho*/
+  margin: auto;
+  text-align: center;
+  }
+h1,h2{
+  font-family: 'Tangerine', serif;
+  font-size: 70px;
+  text-shadow: 3px 3px 4px #aaa;
+  /* width: 450px; Ancho */
+  /*background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.1));*/
+  /*linear-gradient= gradiente de color, background puede cambiar el color del fondo */
+ /*  padding:2px 6px 2px 80px; Espaciado o relleno,arriba,izquierda,abajo,derecha */
+
+  }
+h3{
+  font-family: 'Tangerine', serif;
+  font-size: 50px;
+  text-shadow: 2px 2px 2px #aaa;
+  }
+h4{
+  font-family: 'Tangerine', serif;
+  font-size: 40px;
+  text-shadow: 2px 2px 2px #aaa;
+  }
+p{
+  font-family: 'Tangerine', serif;
+  font-size: 30px;
+  letter-spacing: 1px;
+  line-height: 1;
+ }
+ul,ol{
+  font-family: 'Tangerine', serif;
+  font-size: 30px;
+  border: 2px solid black;  /*Grosor */
+  width: 600px;
+  margin: auto;
+  text-align: left;
+    }
+a {
+  font-size: 30px;
+  letter-spacing: 1px;
+  line-height: 2;
+  }
+img {
+  display: block;
+  margin: auto;
+  }
+button {
+  color: blue;
+  background-color:#66ff33;
+  border-color:#66ff33;
+  box-shadow: 2px 2px 2px #aaa;
+}
