@@ -4,4 +4,5 @@ body{
 .borde{border:1px #000 solid;}
 .centro{text-align: center;}
 .derecha{text-align: right;}
+.izquierda{text-align: left;}
 .posicion{padding: 12px 0px 0px 0px;}
