@@ -1,26 +1,3 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Space Invaders</title>
-
-	<script src="js/helpers.js"></script>
-
-	<style>
-	canvas {
-		background-color: #000;
-		display: block;
-		position: absolute;
-		margin: auto;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-	}
-	</style>
-</head>
-<body>
-<script>
 var
 
 /**
@@ -66,7 +43,7 @@ function main() {
 		init();
 		run();
 	});
-	img.src = "res/invaders.png";
+	img.src = "images/invaders.png";
 };
 
 /**
@@ -117,7 +94,7 @@ function init() {
 
 		/**
 		 * Create damage effect on city-canvas
-		 * 
+		 *
 		 * @param  {number} x x-coordinate
 		 * @param  {number} y y-coordinate
 		 */
@@ -138,7 +115,7 @@ function init() {
 
 		/**
 		 * Check if pixel at (x, y) is opaque
-		 * 
+		 *
 		 * @param  {number} x x-coordinate
 		 * @param  {number} y y-coordinate
 		 * @return {bool}     boolean value if pixel opaque
@@ -268,7 +245,7 @@ function update() {
 			}
 		}
 	}
-	// makes the alien shoot in an random fashion 
+	// makes the alien shoot in an random fashion
 	if (Math.random() < 0.03 && aliens.length > 0) {
 		var a = aliens[Math.round(Math.random() * (aliens.length - 1))];
 		// iterate through aliens and check collision to make
@@ -333,6 +310,3 @@ function render() {
 
 // start and run the game
 main();
-</script>
-</body>
-</html>

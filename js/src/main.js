@@ -18,9 +18,9 @@ require(["src/Game", "src/Tetris"], function(Game, Tetris) {
 			canvas.height = 272;
 			canvas.scale = 1;
 
-			content.load("back", "res/back.png");
-			content.load("blocks", "res/blocks.png");
-			content.load("numbers", "res/numbers.png");
+			content.load("back", "images/back.png");
+			content.load("blocks", "images/blocks.png");
+			content.load("numbers", "images/numbers.png");
 
 			input.bindKey("space", input.Keys.SPACE);
 			input.bindKey("left", [input.Keys.LEFT_ARROW, input.Keys.A]);
@@ -41,7 +41,7 @@ require(["src/Game", "src/Tetris"], function(Game, Tetris) {
 			} else {
 
 				this.hasLoad = content.progress() === 1;
-				
+
 				if (this.hasLoad) {
 					this.tetris = new Tetris(10, 22);
 				}
