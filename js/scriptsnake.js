@@ -158,12 +158,13 @@
          */
         function main() {
         	// create and initiate the canvas element
+
         	canvas = document.createElement("canvas");
         	canvas.width = COLS*20;
         	canvas.height = ROWS*20;
+          canvas = document.getElementById('game-canvas');
         	ctx = canvas.getContext("2d");
         	// add the canvas element to the body of the document
-        	document.body.appendChild(canvas);
 
         	// sets an base font for bigger score display
         	ctx.font = "12px Helvetica";
