@@ -311,6 +311,10 @@
         	// message to the canvas
         	ctx.fillStyle = "#000";
         	ctx.fillText("SCORE: " + score, 10, canvas.height-10);
+          var maxscore=0;
+          if(score>=maxscore){
+            maxscore = score;
+          }
         }
 
         // start and run the game
