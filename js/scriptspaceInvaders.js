@@ -674,10 +674,6 @@ function drawBottomHud() {
                  player.clipRect.h * 0.5);
   fillText('PRESS X TO SHOOT', CANVAS_WIDTH - 200, CANVAS_HEIGHT - 7.5);
   fillCenteredText('SCORE: ' + player.score, CANVAS_WIDTH/2, 20);
-  var maxscore=0;
-  if(score>=maxscore){
-    maxscore = score;
-  }
 }
 
 function drawAliens(resized) {

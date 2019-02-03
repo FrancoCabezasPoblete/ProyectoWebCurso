@@ -11,7 +11,20 @@
     <link rel="stylesheet" href="css/stylespaceInvaders.css">
     <link rel="shortcut icon" type="image/svg" href="images/boton-de-reproduccion.svg" >
     <title>Franklassic's</title>
-    <script src="js/SpaceInvadershelpers.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCnvcS2nRg5mVSd4GpaI6HBNCQqeiICkX0",
+        authDomain: "franklassics.firebaseapp.com",
+        databaseURL: "https://franklassics.firebaseio.com",
+        projectId: "franklassics",
+        storageBucket: "franklassics.appspot.com",
+        messagingSenderId: "1056041394209"
+      };
+      firebase.initializeApp(config);
+    </script>
   </head>
   <body>
     <div class="container mt-3 mb-3">

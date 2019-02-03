@@ -11,6 +11,20 @@
     <link rel="stylesheet" href="css/stylesnake.css">
     <link rel="shortcut icon" type="image/svg" href="images/boton-de-reproduccion.svg" >
     <title>Franklassic's</title>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCnvcS2nRg5mVSd4GpaI6HBNCQqeiICkX0",
+        authDomain: "franklassics.firebaseapp.com",
+        databaseURL: "https://franklassics.firebaseio.com",
+        projectId: "franklassics",
+        storageBucket: "franklassics.appspot.com",
+        messagingSenderId: "1056041394209"
+      };
+      firebase.initializeApp(config);
+    </script>
   </head>
   <body>
     <div class="container mt-3 mb-3">
@@ -25,12 +39,12 @@
         </div>
       </div>
       <div class="col-10 mx-auto borde"></div>
-  <div class="row mt-3 mb-3">
+  <div class="row mt-3">
     <div class="col-12 col-sm-6 centro">
-      <a href="SpaceInvaders.html"><img src="images/SpaceInvaders.gif" alt="Space Invaders" style="max-width:100%;width:auto;height:auto;border:1px"></a>
+      <a href="SpaceInvaders.html"><img src="images/SpaceInvaders.gif" alt="Space Invaders" style="max-width:70%;width:auto;height:auto;border:1px"></a>
     </div>
     <div class="col-12 col-sm-6 centro">
-      <a href="Tetris.html"><img src="images/Tetris.gif" alt="Tetris" style="max-width:100%;width:auto;height:auto;border:1px"></a>
+      <a href="Tetris.html"><img src="images/Tetris.gif" alt="Tetris" style="max-width:40%;width:auto;height:auto;border:1px"></a>
     </div>
   </div>
   </div>
