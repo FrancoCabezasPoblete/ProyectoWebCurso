@@ -1,3 +1,7 @@
+// Initialize Cloud Firestore through Firebase
+var db = firebase.firestore();
+//firebase
+//Create
 function registrar(){
   var emailS = document.getElementById('EmailS').value;
   var nombre = document.getElementById('Username').value;
@@ -6,6 +10,18 @@ function registrar(){
   if(contrasenaS == contrasenaS2){
   firebase.auth().createUserWithEmailAndPassword(emailS, contrasenaS)
   .then(function(){
+    db.collection("usuarios").doc(emailS).set({
+      NombreUsuario: nombre,
+      PuntuacionSpaceInvaders: 0,
+      PuntuacionSnake: 0,
+      PuntuacionTetris: 0
+    })
+    .then(function() {
+        console.log("Se a creado el usuario exitosamente! Relacionado con el email: "+ emailS);
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    });
     console.log('Registrando...');
     location.href="index.html";
   })
@@ -39,12 +55,11 @@ function ingreso(){
   // ...
   });
 }
-
+//Read
 function observador(){
   firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     console.log('existe usuario activo');
-    useriniciada();
     // User is signed in.
     var displayName = user.displayName;
     var email = user.email;
@@ -53,6 +68,20 @@ function observador(){
     var isAnonymous = user.isAnonymous;
     var uid = user.uid;
     var providerData = user.providerData;
+
+    var docRef = db.collection("usuarios").doc(email);
+    docRef.get().then(function(doc) {
+        if (doc.exists) {
+            console.log("Document data:", doc.data().NombreUsuario);
+            displayName = doc.data().NombreUsuario;
+            useriniciada(displayName,email);
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
     // ...
   } else {
     console.log('no existe usuario activo');
@@ -63,11 +92,42 @@ function observador(){
 });
 }
 observador();
+//Update
+function Editar(email){
+  var userRef = db.collection("usuarios").doc(email);
+  var nombre = document.getElementById('Username2').value;
+  return userRef.update({
+      NombreUsuario: nombre
+  })
+  .then(function() {
+      console.log("El nombre de usuario fue cambiado exitosamente! :D\nTu nombre nuevo es: "+ nombre);
+      location.href="index.html";
+  })
+  .catch(function(error) {
+      // The document probably doesn't exist.
+      console.error("Error updating document: ", error);
+  });
+}
+//Delete
+function Eliminar(email){
+  var user = firebase.auth().currentUser;
+    db.collection("usuarios").doc(email).delete().then(function() {
+      console.log("El usuario fue borrado exitosamente!");
+  }).catch(function(error) {
+      console.error("Error removing document: ", error);
+  });
+  user.delete().then(function() {
+    // User deleted.
+  }).catch(function(error) {
+    // An error happened.
+  });
+  location.href="index.html";
+}
 
 function usernoiniciada(){
   var contenido = document.getElementById('registrar/ingresar');
   contenido.innerHTML = `
-  <a role="button" class="btn btn-outline-primary  izquierda" style="color: #0066cc;" data-toggle="modal" data-target="#exampleModal">Ingresar</a>
+  <a role="button" class="btn btn-primary  izquierda" style="color: #ffffff;" data-toggle="modal" data-target="#exampleModal">Ingresar</a>
 
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -98,7 +158,7 @@ function usernoiniciada(){
   </div>
   </div>
 
-  <a role="button" class="btn btn-outline-secondary  izquierda" style="color: #666699;" data-toggle="modal" data-target="#exampleModal2">Registrarse</a>
+  <a role="button" class="btn btn-secondary  izquierda" style="color: #ffffff" data-toggle="modal" data-target="#exampleModal2">Registrarse</a>
 
   <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -140,10 +200,41 @@ function usernoiniciada(){
   `;
 }
 
-function useriniciada(){
+function useriniciada(Nombre,EmailE){
   var contenido = document.getElementById('cerrar');
   contenido.innerHTML = `
-  <a role="button" onclick="cerrar()" class="btn btn-outline-secondary  izquierda">Cerrar sesión</a>
+  <h4>${Nombre}</h4>
+  <a type="button" href="Puntuacion.html" class="btn btn-primary" role="button">Puntuaciones</a>
+  <button onclick="cerrar()" class="btn btn-secondary">Cerrar sesión</button>
+  `;
+  var contenidoFinal = document.getElementById('Eliminar');
+  contenidoFinal.innerHTML = `
+  <button class="btn btn-warning  izquierda" data-toggle="modal" data-target="#exampleModal3">Editar nombre de usuario</button>
+  <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Nombre de usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form>
+      <div class="form-group">
+        <label for="Username2">Nombre de usuario</label>
+        <input type="Username" class="form-control" id="Username2" placeholder="Ingrese Nombre de usuario">
+      </div>
+    </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-success" onclick="Editar('${EmailE}')">Editar</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  <button onclick="Eliminar('${EmailE}')" class="btn btn-danger  izquierda">Eliminar Cuenta</button>
   `;
 }
 
