@@ -23,7 +23,6 @@ function registrar(){
         console.error("Error adding document: ", error);
     });
     console.log('Registrando...');
-    location.href="index.html";
   })
   .catch(function(error) {
   // Handle Errors here.
@@ -68,7 +67,7 @@ function observador(){
     var isAnonymous = user.isAnonymous;
     var uid = user.uid;
     var providerData = user.providerData;
-
+    miTabla(email);
     var docRef = db.collection("usuarios").doc(email);
     docRef.get().then(function(doc) {
         if (doc.exists) {
@@ -193,6 +192,7 @@ function usernoiniciada(){
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-primary" onclick="registrar()">Registrarse</button>
+        <p class="posicion">Reinicie la pagina luego de registrarse</p>
       </div>
     </div>
   </div>
@@ -247,4 +247,268 @@ function cerrar() {
   .catch(function(error){
     console.log(error);
   })
+}
+//tabPuntuacion
+function ActivarSItab(){
+  var contenido = document.getElementById('tabPuntuacion');
+  contenido.innerHTML = `
+  <div class="col centro"><h2>Puntuaciones Globales</h2></div>
+  <div class="row mx-auto">
+    <div class="col">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active">Space Invaders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" onclick="ActivarStab()">Snake</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" onclick="ActivarTtab()">Tetris</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre de usuario</th>
+      <th scope="col">Puntuación</th>
+    </tr>
+  </thead>
+  <tbody id="tabla">
+  </tbody>
+  </table>
+  `;
+  var tabla = document.getElementById('tabla');
+  db.collection("usuarios").orderBy("PuntuacionSpaceInvaders","desc").limit(100).onSnapshot((querySnapshot) => {
+    tabla.innerHTML = '';
+    var n=0;
+      querySnapshot.forEach((doc) => {
+          console.log(`${doc.id} => ${doc.data()}`);
+          n +=1;
+          tabla.innerHTML += `
+          <tr>
+            <th scope="row">${n}</th>
+            <td>${doc.data().NombreUsuario}</td>
+            <td>${doc.data().PuntuacionSpaceInvaders}</td>
+          </tr>
+          `;
+      });
+  });
+}
+
+function ActivarStab(){
+  var contenido = document.getElementById('tabPuntuacion');
+  contenido.innerHTML = `
+  <div class="col centro"><h2>Puntuaciones Globales</h2></div>
+  <div class="row mx-auto">
+    <div class="col">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link" onclick="ActivarSItab()">Space Invaders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active">Snake</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" onclick="ActivarTtab()">Tetris</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre de usuario</th>
+      <th scope="col">Puntuación</th>
+    </tr>
+  </thead>
+  <tbody id="tabla">
+  </tbody>
+  </table>
+  `;
+  var tabla = document.getElementById('tabla');
+  db.collection("usuarios").orderBy("PuntuacionSnake","desc").limit(100).onSnapshot((querySnapshot) => {
+    tabla.innerHTML = '';
+    var n=0;
+      querySnapshot.forEach((doc) => {
+          console.log(`${doc.id} => ${doc.data()}`);
+          n +=1;
+          tabla.innerHTML += `
+          <tr>
+            <th scope="row">${n}</th>
+            <td>${doc.data().NombreUsuario}</td>
+            <td>${doc.data().PuntuacionSnake}</td>
+          </tr>
+          `;
+      });
+  });
+}
+
+function ActivarTtab(){
+  var contenido = document.getElementById('tabPuntuacion');
+  contenido.innerHTML = `
+  <div class="col centro"><h2>Puntuaciones Globales</h2></div>
+  <div class="row mx-auto">
+    <div class="col">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link" onclick="ActivarSItab()">Space Invaders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" onclick="ActivarStab()">Snake</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active">Tetris</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre de usuario</th>
+      <th scope="col">Puntuación</th>
+    </tr>
+  </thead>
+  <tbody id="tabla">
+  </tbody>
+  </table>
+  `;
+  var tabla = document.getElementById('tabla');
+  db.collection("usuarios").orderBy("PuntuacionTetris","desc").limit(100).onSnapshot((querySnapshot) => {
+    tabla.innerHTML = '';
+    var n=0;
+      querySnapshot.forEach((doc) => {
+          console.log(`${doc.id} => ${doc.data()}`);
+          n +=1;
+          tabla.innerHTML += `
+          <tr>
+            <th scope="row">${n}</th>
+            <td>${doc.data().NombreUsuario}</td>
+            <td>${doc.data().PuntuacionTetris}</td>
+          </tr>
+          `;
+      });
+  });
+}
+//UpdateScoreSnake
+function EditarSnake(max){
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    console.log('existe usuario activo');
+    // User is signed in.
+    var displayName = user.displayName;
+    var email = user.email;
+    var emailVerified = user.emailVerified;
+    var photoURL = user.photoURL;
+    var isAnonymous = user.isAnonymous;
+    var uid = user.uid;
+    var providerData = user.providerData;
+
+    var docRef = db.collection("usuarios").doc(email);
+    docRef.get().then(function(doc) {
+      if(max>doc.data().PuntuacionSnake){
+        if (doc.exists) {
+          var userRef = db.collection("usuarios").doc(email);
+          return userRef.update({
+              PuntuacionSnake: max
+          })
+          .then(function() {
+              console.log("El puntaje fue cambiado exitosamente! :D\nTu puntaje nuevo es: "+ max);
+          })
+          .catch(function(error) {
+              // The document probably doesn't exist.
+              console.error("Error updating document: ", error);
+          });
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        } }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+    // ...
+  } else {
+    console.log('no existe usuario activo');
+    // User is signed out.
+    // ...
+  }
+});
+}
+
+function EditarSpaceInvaders(max){
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    console.log('existe usuario activo');
+    // User is signed in.
+    var displayName = user.displayName;
+    var email = user.email;
+    var emailVerified = user.emailVerified;
+    var photoURL = user.photoURL;
+    var isAnonymous = user.isAnonymous;
+    var uid = user.uid;
+    var providerData = user.providerData;
+
+    var docRef = db.collection("usuarios").doc(email);
+    docRef.get().then(function(doc) {
+      if(max>doc.data().PuntuacionSpaceInvaders){
+        if (doc.exists) {
+          var userRef = db.collection("usuarios").doc(email);
+          return userRef.update({
+              PuntuacionSpaceInvaders: max
+          })
+          .then(function() {
+              console.log("El puntaje fue cambiado exitosamente! :D\nTu puntaje nuevo es: "+ max);
+          })
+          .catch(function(error) {
+              // The document probably doesn't exist.
+              console.error("Error updating document: ", error);
+          });
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        } }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+    // ...
+  } else {
+    console.log('no existe usuario activo');
+    // User is signed out.
+    // ...
+  }
+});
+}
+
+function miTabla(email){
+var miTabla = document.getElementById('miTabla');
+db.collection("usuarios").doc(email).get().then(function(doc) {
+  miTabla.innerHTML = '';
+    if (doc.exists) {
+        console.log(`${doc.id} => ${doc.data()}`);
+        miTabla.innerHTML = `
+        <tr>
+          <th scope="row">Space Invaders</th>
+          <td>${doc.data().PuntuacionSpaceInvaders}</td>
+        </tr>
+        <tr>
+          <th scope="row">Snake</th>
+          <td>${doc.data().PuntuacionSnake}</td>
+        </tr>
+        <tr>
+          <th scope="row">Tetris</th>
+          <td>${doc.data().PuntuacionTetris}</td>
+        </tr>
+        `;
+} else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
+}
+}).catch(function(error) {
+console.log("Error getting document:", error);
+});
 }

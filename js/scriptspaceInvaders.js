@@ -2,6 +2,7 @@
  * By John Resig http://ejohn.org/
  * MIT Licensed.
  */
+ var maxscore = 0;
 // Inspired by base2 and Prototype
 (function(){
   var initializing = false, fnTest = /xyz/.test(function(){xyz;}) ? /\b_super\b/ : /.*/;
@@ -674,6 +675,12 @@ function drawBottomHud() {
                  player.clipRect.h * 0.5);
   fillText('PRESS X TO SHOOT', CANVAS_WIDTH - 200, CANVAS_HEIGHT - 7.5);
   fillCenteredText('SCORE: ' + player.score, CANVAS_WIDTH/2, 20);
+  if(player.score>maxscore){
+    maxscore = player.score;
+    //var contenido = document.getElementById('score');
+    //contenido.innerHTML = `<h2>${maxscore}</h2>`;
+    EditarSpaceInvaders(maxscore);
+  }
 }
 
 function drawAliens(resized) {

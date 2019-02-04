@@ -39,10 +39,6 @@ define(function() {
 		addScore: function(cleared) {
 			var p = [0, 40, 100, 300, 1200][cleared];
 			this.score += (this.lvl + 1) * p;
-			var maxscore=0;
-			if(score>=maxscore){
-				maxscore = score;
-			}
 		},
 
 		checkLvlUp: function() {
