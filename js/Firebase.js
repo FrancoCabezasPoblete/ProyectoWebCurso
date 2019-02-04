@@ -262,9 +262,9 @@ function ActivarSItab(){
         <li class="nav-item">
           <a class="nav-link" onclick="ActivarStab()">Snake</a>
         </li>
-        <li class="nav-item">
+        <!--<li class="nav-item">
           <a class="nav-link" onclick="ActivarTtab()">Tetris</a>
-        </li>
+        </li>-->
       </ul>
     </div>
   </div>
@@ -311,9 +311,9 @@ function ActivarStab(){
         <li class="nav-item">
           <a class="nav-link active">Snake</a>
         </li>
-        <li class="nav-item">
+        <!--<li class="nav-item">
           <a class="nav-link" onclick="ActivarTtab()">Tetris</a>
-        </li>
+        </li>-->
       </ul>
     </div>
   </div>
@@ -347,6 +347,7 @@ function ActivarStab(){
   });
 }
 
+/*Tabla tetris, Desactivada temporalmente
 function ActivarTtab(){
   var contenido = document.getElementById('tabPuntuacion');
   contenido.innerHTML = `
@@ -394,7 +395,7 @@ function ActivarTtab(){
           `;
       });
   });
-}
+}*/
 //UpdateScoreSnake
 function EditarSnake(max){
   firebase.auth().onAuthStateChanged(function(user) {
