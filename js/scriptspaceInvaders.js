@@ -2,6 +2,7 @@
  * By John Resig http://ejohn.org/
  * MIT Licensed.
  */
+ var maxscore = 0;
 // Inspired by base2 and Prototype
 (function(){
   var initializing = false, fnTest = /xyz/.test(function(){xyz;}) ? /\b_super\b/ : /.*/;
@@ -245,7 +246,7 @@ var Player = SheetSprite.extend({
   init: function() {
     this._super(spriteSheetImg, PLAYER_CLIP_RECT, CANVAS_WIDTH/2, CANVAS_HEIGHT - 70);
     this.scale.set(0.85, 0.85);
-    this.lives = 3;
+    this.lives = 2;
     this.xVel = 0;
     this.bullets = [];
     this.bulletDelayAccumulator = 0;
@@ -253,7 +254,7 @@ var Player = SheetSprite.extend({
   },
 
   reset: function() {
-    this.lives = 3;
+    this.lives = 2;
     this.score = 0;
     this.position.set(CANVAS_WIDTH/2, CANVAS_HEIGHT - 70);
   },
@@ -672,9 +673,14 @@ function drawBottomHud() {
   ctx.drawImage(spriteSheetImg, player.clipRect.x, player.clipRect.y, player.clipRect.w,
                  player.clipRect.h, 45, CANVAS_HEIGHT - 23, player.clipRect.w * 0.5,
                  player.clipRect.h * 0.5);
-  fillText('CREDIT: ', CANVAS_WIDTH - 115, CANVAS_HEIGHT - 7.5);
+  fillText('PRESS X TO SHOOT', CANVAS_WIDTH - 200, CANVAS_HEIGHT - 7.5);
   fillCenteredText('SCORE: ' + player.score, CANVAS_WIDTH/2, 20);
-  fillBlinkingText('00', CANVAS_WIDTH - 25, CANVAS_HEIGHT - 7.5, TEXT_BLINK_FREQ);
+  if(player.score>maxscore){
+    maxscore = player.score;
+    //var contenido = document.getElementById('score');
+    //contenido.innerHTML = `<h2>${maxscore}</h2>`;
+    EditarSpaceInvaders(maxscore);
+  }
 }
 
 function drawAliens(resized) {

@@ -1,3 +1,4 @@
+var maxscore=0;
         var
 
         /**
@@ -5,7 +6,6 @@
          */
         COLS = 26,
         ROWS = 26,
-
         EMPTY = 0,
         SNAKE = 1,
         FRUIT = 2,
@@ -311,6 +311,12 @@
         	// message to the canvas
         	ctx.fillStyle = "#000";
         	ctx.fillText("SCORE: " + score, 10, canvas.height-10);
+          if(score>maxscore){
+            maxscore = score;
+            //var contenido = document.getElementById('score');
+            //contenido.innerHTML = `<h2>${maxscore}</h2>`;
+            EditarSnake(maxscore);
+          }
         }
 
         // start and run the game

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" type="image/svg" href="images/boton-de-reproduccion.svg" >
+    <title>Franklassic's</title>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCnvcS2nRg5mVSd4GpaI6HBNCQqeiICkX0",
+        authDomain: "franklassics.firebaseapp.com",
+        databaseURL: "https://franklassics.firebaseio.com",
+        projectId: "franklassics",
+        storageBucket: "franklassics.appspot.com",
+        messagingSenderId: "1056041394209"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+  </head>
+  <body>
+    <div class="container mt-3 mb-3">
+      <div class="row mx-auto mb-3">
+      <div class="col col-md-3 col-lg-5 derecha posicion"><img src="images/boton-de-reproduccion.svg" alt="Icono_de_Reproduccion" width=32px; height=32px;></div>
+      <div class="col col-md-5 col-lg-3"><a href="index.html"style="color:black"><h1>Franklassic's</h1></a></div>
+      <div class="col-12 col-md-4 col-lg-4 posicion" >
+        <div id="registrar/ingresar"></div>
+        <div id="cerrar"></div>
+      </div>
+    </div>
+    <div class="col-12 mx-auto borde"></div>
+    <br/>
+      <div class="row">
+      <div class="jumbotron mx-auto col-12 col-lg-5 shadow p-3 mb-5 rounded">
+        <div class="col centro"><h2>Mi puntuación</h2></div>
+        <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Juego</th>
+            <th scope="col">Puntuación maxima</th>
+          </tr>
+        </thead>
+        <tbody id="miTabla">
+          <tr>
+            <th scope="row">Space Invaders</th>
+            <td>0</td>
+          </tr>
+          <tr>
+            <th scope="row">Snake</th>
+            <td>0</td>
+          </tr>
+          <tr>
+            <th scope="row">Tetris</th>
+            <td>0</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr class="my-4">
+      <div class="row mx-auto">
+        <div class="col">
+      <a class="btn btn-dark btn-lg " href="index.html" role="button">Volver al inicio</a>
+      </div>
+      </div>
+    </div>
+    <div class="jumbotron mx-auto col-12 col-lg-5 shadow p-3 mb-5 rounded" id="tabPuntuacion">
+      <div class="col centro"><h2>Puntuaciones Globales</h2></div>
+      <div class="row mx-auto">
+        <div class="col">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link" onclick="ActivarSItab()">Space Invaders</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="ActivarStab()">Snake</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="ActivarTtab()">Tetris</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+  </div>
+    </div>
+
+    <div class="col-10 mx-auto borde"></div>
+    <div class="row mt-3 mb-3">
+      <div class="col-12 col-sm-4 centro">
+        <img src="images/SpaceInvaders.gif" alt="SpaceInvaders" style="max-width:100%;width:auto;height:auto;border:1px">
+      </div>
+      <div class="col-12 col-sm-4 centro">
+        <img src="images/Snake.gif" alt="Snake" style="max-width:100%;width:auto;height:auto;border:1px">
+      </div>
+      <div class="col-12 col-sm-4 centro">
+        <img src="images/Tetris.gif" alt="Tetris" style="max-width:100%;width:auto;height:auto;border:1px">
+      </div>
+    </div>
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/Firebase.js"></script>
+  </body>
+</html>

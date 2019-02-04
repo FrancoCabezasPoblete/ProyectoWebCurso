@@ -10,15 +10,30 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" type="image/svg" href="images/boton-de-reproduccion.svg" >
     <title>Franklassic's</title>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCnvcS2nRg5mVSd4GpaI6HBNCQqeiICkX0",
+        authDomain: "franklassics.firebaseapp.com",
+        databaseURL: "https://franklassics.firebaseio.com",
+        projectId: "franklassics",
+        storageBucket: "franklassics.appspot.com",
+        messagingSenderId: "1056041394209"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
   </head>
   <body>
     <div class="container mt-3 mb-3">
       <div class="row mx-auto mb-3">
-      <div class="col-6 col-sm-5 derecha posicion"><img src="images/boton-de-reproduccion.svg" alt="Icono_de_Reproduccion" width=32px; height=32px;></div>
-      <div class="col-6 col-sm-3"><h1>Franklassic's</h1></div>
-      <div class="col-12 col-sm-4 posicion">
-      <a role="button" href="LogIn.html" class="btn btn-outline-primary  izquierda">Ingresar</a>
-      <a role="button" href="SignIn.html" class="btn btn-outline-secondary  izquierda">Registrarse</a>
+      <div class="col-3 col-md-3 col-lg-5 derecha posicion"><img src="images/boton-de-reproduccion.svg" alt="Icono_de_Reproduccion" width=32px; height=32px;></div>
+      <div class="col-9 col-md-5 col-lg-3"><h1>Franklassic's</h1></div>
+      <div class="col-12 col-md-4 col-lg-4 posicion" >
+        <div id="registrar/ingresar"></div>
+        <div id="cerrar"></div>
       </div>
     </div>
     <div class="col-10 mx-auto borde"></div>
@@ -30,13 +45,14 @@
           <a href="SpaceInvaders.html"><h2>Space Invaders</h2></a>
           <p class="shadow p-3 mb-5 rounded"align="justify">
             Space Invaders (スペースインベーダー Supēsu Inbēdā?) es un videojuego de arcade lanzado al mercado en 1978. Space Invaders es uno de los primeros juegos matamarcianos. Es uno de los videojuegos más importantes de la historia. Su objetivo es eliminar oleadas de alienígenas con un cañón láser y obtener la mayor cantidad de puntos posible. Para el diseño del juego, se inspiró en Breakout, La guerra de los mundos y Star Wars.*
+          </p>
         </div>
       </div>
       <hr class="my-4">
         <div class="row mt-3 mb-3">
           <div class="col-12 col-sm-6">
             <a href="Snake.html"><h2>Snake</h2></a>
-            <p class="shadow p-3 mb-5 rounded"align="justify">
+            <p class="shadow p-3 mb-3 rounded"align="justify">
               El Snake (a veces también llamado la serpiente) es un videojuego lanzado a mediados de la década del 70 que ha mantenido su popularidad desde entonces, convirtiéndose en un clásico. En 1998, el Snake obtuvo una audiencia masiva tras convertirse en un juego estándar pre-grabado en los teléfonos Nokia.*
             </p>
           </div>
@@ -58,8 +74,11 @@
             </p>
           </div>
         </div>
-        <div class="col centro"><footer>*Toda información es cortesia de wikipedia</footer></div>
+        <div class="row mb-3">
+          <div id="Eliminar" class="col-12 centro"></div>
+        </div>
     </div>
+    <div class="centro container-fluid bg-primary"><footer style="color:black">*Toda información es cortesia de wikipedia</footer></div>
 
 
 
@@ -68,5 +87,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/Firebase.js"></script>
   </body>
 </html>
