@@ -313,8 +313,8 @@ var maxscore=0;
         	ctx.fillText("SCORE: " + score, 10, canvas.height-10);
           if(score>maxscore){
             maxscore = score;
-            //var contenido = document.getElementById('score');
-            //contenido.innerHTML = `<h2>${maxscore}</h2>`;
+            var contenido = document.getElementById('score');
+            contenido.innerHTML = `<h2>${maxscore}</h2>`;
             EditarSnake(maxscore);
           }
         }
