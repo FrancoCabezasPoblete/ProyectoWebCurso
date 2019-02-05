@@ -502,7 +502,7 @@ db.collection("usuarios").doc(email).get().then(function(doc) {
         </tr>
         <tr>
           <th scope="row">Tetris</th>
-          <td>${doc.data().PuntuacionTetris}</td>
+          <td><!--{doc.data().PuntuacionTetris}-->Desactivado</td>
         </tr>
         `;
 } else {
